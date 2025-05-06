@@ -9,7 +9,7 @@ def find(x, parent):
         parent[x] = find(parent[x], parent)
     return parent[x]
 
-def union(a, b, parent, rank):
+def union(a, b, parent, rank)
     parA = find(a, parent)
     parB = find(b, parent)
     if parA == parB:
@@ -33,8 +33,7 @@ def kruskals_mst(edges, V):
 
     mst_weight = 0
     count = 0
-    mst_edges = []  # ✅ Store selected edges here
-
+    mst_edges = []  
     for edge in edges:
         if count == V - 1:
             break
@@ -43,10 +42,10 @@ def kruskals_mst(edges, V):
         if parA != parB:
             union(edge.src, edge.dest, parent, rank)
             mst_weight += edge.wt
-            mst_edges.append(edge)  # ✅ Add edge to result
+            mst_edges.append(edge)  
             count += 1
 
-    return mst_weight, mst_edges  # ✅ Return both
+    return mst_weight, mst_edges  
 
 if __name__ == "__main__":
     n = int(input("Enter the number of vertices: "))
