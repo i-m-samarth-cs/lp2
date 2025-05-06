@@ -1,4 +1,3 @@
-
 def dfs(visited, graph, node):
     if node not in visited:
         print(node, end=" ")
@@ -13,7 +12,7 @@ def bfs(visited, graph, node, queue):
 
     while queue:
         s = queue.pop(0)
-        print(s, end=" 0")
+        print(s, end=" ")  # Fixed: Removed the "0" after each node
         for neighbour in graph.get(s, []):
             if neighbour not in visited:
                 visited.add(neighbour)
@@ -46,4 +45,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

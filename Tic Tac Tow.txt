@@ -1,0 +1,95 @@
+import heapq
+import copy
+
+X = 'X'
+O = 'O'
+E = ' '  # empty cell
+
+# Check win
+def check_win(board, player):
+    win = [
+        [board[0][0], board[0][1], board[0][2]],
+        [board[1][0], board[1][1], board[1][2]],
+        [board[2][0], board[2][1], board[2][2]],
+        [board[0][0], board[1][0], board[2][0]],
+        [board[0][1], board[1][1], board[2][1]],
+        [board[0][2], board[1][2], board[2][2]],
+        [board[0][0], board[1][1], board[2][2]],
+        [board[0][2], board[1][1], board[2][0]],
+    ]
+    return [player, player, player] in win
+
+# Check draw
+def full(board):
+    for row in board:
+        for cell in row:
+            if cell == E:
+                return False
+    return True
+
+# Score: X win = -100, O win = 100, draw/ongoing = 0
+def get_score(board):
+    if check_win(board, X):
+        return -100
+    elif check_win(board, O):
+        return 100
+    return 0
+
+# Next moves
+def next_boards(board, turn):
+    boards = []
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == E:
+                new_board = copy.deepcopy(board)
+                new_board[i][j] = turn
+                boards.append((new_board, (i, j)))
+    return boards
+
+# A* search
+def a_star(board):
+    queue = []
+    heapq.heappush(queue, (0, 0, board, True, None))  # (f, steps, board, is_x_turn, first_move)
+    
+    best = None
+    best_score = float('inf')
+
+    while queue:
+        f, steps, now, is_x, move = heapq.heappop(queue)
+
+        if check_win(now, X) or check_win(now, O) or full(now):
+            score = steps + get_score(now)
+            if score < best_score:
+                best_score = score
+                best = move
+            continue
+
+        turn = X if is_x else O
+        next_steps = next_boards(now, turn)
+
+        for new_board, pos in next_steps:
+            h = get_score(new_board)
+            total = steps + 1 + h
+            heapq.heappush(queue, (total, steps + 1, new_board, not is_x, pos if move is None else move))
+
+    return best
+
+# Show board
+def show(board):
+    for row in board:
+        print("|".join(row))
+    print()
+
+# Run it
+if __name__ == "__main__":
+    board = [
+        [E, E, E],
+        [E, O, E],
+        [E, E, E]
+    ]
+
+    print("Now:")
+    show(board)
+
+    move = a_star(board)
+    print("Best move for X:", move)
