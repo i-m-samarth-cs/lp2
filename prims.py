@@ -1,42 +1,34 @@
-import heapq  # priority queue साठी
+import heapq
 
-def prim(n, adj):
-    visited = [False] * n
-    min_heap = [(0, 0)]  # (weight, node) — node 0 पासून सुरू
-    total_cost = 0
-    mst = []
+def prims_mst(graph, vertices, start_vertex=0):
+    pq, visited, mst_edges, total_weight = [(0, start_vertex, None)], [False] * vertices, [], 0
+    while pq:
+        weight, current, parent = heapq.heappop(pq)
+        if visited[current]: continue
+        visited[current] = True
+        if parent is not None: mst_edges.append((parent, current, weight)); total_weight += weight
+        for neighbor, edge_weight in graph[current]:
+            if not visited[neighbor]: heapq.heappush(pq, (edge_weight, neighbor, current))
+    return mst_edges, total_weight
 
-    while min_heap:
-        weight, u = heapq.heappop(min_heap)
-        if visited[u]:
-            continue
-        visited[u] = True
-        total_cost += weight
-
-        if weight != 0:
-            mst.append((u, weight))
-
-        for v, w in adj[u]:
-            if not visited[v]:
-                heapq.heappush(min_heap, (w, v))
-
-    print("\n Minimum Spanning Tree edges:")
-    for u, w in mst:
-        print(f"{u + 1} (weight = {w})")  # Output मध्ये 1-based index
-    print(f"Total Minimum Cost = {total_cost}")
-
-#  User Input
-n = int(input("Enter number of vertices: "))
-e = int(input("Enter number of edges: "))
-
-adj = [[] for _ in range(n)]
-print("Enter edges (format: u v weight):")
-for _ in range(e):
-    u, v, w = map(int, input().split())
-    u -= 1  # Convert to 0-based
-    v -= 1
-    adj[u].append((v, w))
-    adj[v].append((u, w))  # undirected graph
-
-# Run Prim's Algorithm
-prim(n, adj)
+if __name__ == "__main__":
+    vertices = int(input("Enter number of vertices: "))
+    
+    graph = {i: [] for i in range(vertices)}
+    
+    edges = int(input("Enter number of edges: "))
+    
+    for _ in range(edges):
+        u, v = map(int, input("Enter edge (vertex1 vertex2): ").split())
+        weight = int(input(f"Enter weight for edge ({u} - {v}): "))
+        graph[u].append((v, weight))
+        graph[v].append((u, weight))  # As it's an undirected graph
+    
+    start_vertex = int(input("Enter starting vertex: "))
+    
+    mst_edges, total_weight = prims_mst(graph, vertices, start_vertex)
+    
+    print("\nEdges in MST:")
+    for parent, vertex, weight in mst_edges:
+        print(f"({parent} - {vertex}) with weight {weight}")
+    print(f"\nTotal weight of MST: {total_weight}")
