@@ -1,0 +1,40 @@
+import re
+
+def chatbot_response(user_input):
+    user_input = user_input.lower()
+    responses = {
+        "hello|hi|hey": "Hello! How can I assist?",
+        "how are you": "I'm good, thank you! How about you?",
+        "order status|track order": "Please provide your order ID.",
+        "shipping time|delivery time": "Same-day delivery or 3-5 days.",
+        "return policy": "You can return within 7 days if unopened.",
+        "thank you|thanks": "You're welcome! Anything else I can help with?",
+        "price|cost": "Please specify the product.",
+        "milk": "30rs per liter.",
+        "eggs": "80rs per dozen.",
+        "rice": "50rs per kg.",
+        "vegetables|veggies": "We have fresh vegetables available.",
+        "fruits": "We have apples, bananas, and oranges.",
+        "snacks": "We have chips, biscuits, and chocolates.",
+        "beverages|drinks": "We have drinks, juices, and water.",
+        "buy|order": "You can order online or visit our store.",
+        "payment methods": "We accept cash, card, and UPI.",
+        "store hours|timing": "We are open from 8 AM to 10 PM.",
+        "location|address": "We are at XYZ Market.",
+        "bye|exit": "Goodbye! Happy shopping!"
+    }
+
+    for pattern, response in responses.items():
+        if re.search(pattern, user_input):
+            return response
+    return "Sorry, I didn't understand that. Could you please rephrase?"
+
+# Chatbot interaction loop
+print("Welcome! Type 'exit' to end.")
+
+while True:
+    user_message = input("You: ")
+    if user_message.lower() in ["bye", "exit"]:
+        print("Chatbot: Goodbye!")
+        break
+    print("Chatbot:", chatbot_response(user_message))

@@ -1,0 +1,62 @@
+from typing import Dict
+
+
+
+def evaluate_performance(employee_data: Dict[str, str]) -> str:
+    """
+    Evaluates employee performance based on rules.
+    Input: Dictionary of employee data.
+    Output: Performance rating.
+    """
+    score = 0
+
+    # Rule 1: Punctuality
+    if employee_data["punctuality"].lower() == "good":
+        score += 2
+    elif employee_data["punctuality"].lower() == "average":
+        score += 1
+
+    # Rule 2: Project Completion
+    if employee_data["project_completion"].lower() == "on time":
+        score += 2
+    elif employee_data["project_completion"].lower() == "late":
+        score += 1
+
+    # Rule 3: Teamwork
+    if employee_data["teamwork"].lower() == "excellent":
+        score += 2
+    elif employee_data["teamwork"].lower() == "good":
+        score += 1
+
+    # Rule 4: Initiative
+    if employee_data["initiative"].lower() == "high":
+        score += 2
+    elif employee_data["initiative"].lower() == "medium":
+        score += 1
+
+    # Final evaluation
+    if score >= 7:
+        return "Outstanding"
+    elif score >= 5:
+        return "Good"
+    elif score >= 3:
+        return "Average"
+    else:
+        return "Needs Improvement"
+
+
+
+employee_data = {
+    "punctuality": input("Enter punctuality (Good/Average/Poor): "),
+    "project_completion": input("Project completion (On time/Late/Not Completed): "),
+    "teamwork": input("Teamwork (Excellent/Good/Poor): "),
+    "initiative": input("Initiative (High/Medium/Low): ")
+}
+
+
+
+result = evaluate_performance(employee_data)
+
+print("\nEmployee Performance Evaluation Result:")
+print("========================================")
+print(f"Performance Rating: {result}")

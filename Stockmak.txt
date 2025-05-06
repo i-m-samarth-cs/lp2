@@ -1,0 +1,79 @@
+from typing import Dict
+
+
+
+
+
+
+def trading_advice(stock_data: Dict[str, str]) -> str:
+    """
+    Provides stock trading advice based on rule-based AI logic.
+    Input: Dictionary containing market indicators.
+    Output: 'Buy', 'Sell', or 'Hold' decision.
+    """
+    score = 0
+
+    # Rule 1: Price Trend
+    if stock_data["price_trend"].lower() == "up":
+        score += 2
+    elif stock_data["price_trend"].lower() == "down":
+        score -= 2
+
+    # Rule 2: Volume
+    if stock_data["volume"].lower() == "high":
+        score += 1
+    elif stock_data["volume"].lower() == "low":
+        score -= 1
+
+    # Rule 3: Volatility
+    if stock_data["volatility"].lower() == "low":
+        score += 1
+    elif stock_data["volatility"].lower() == "high":
+        score -= 1
+
+    # Rule 4: Sentiment
+    if stock_data["sentiment"].lower() == "positive":
+        score += 2
+    elif stock_data["sentiment"].lower() == "negative":
+        score -= 2
+
+    # Final Decision
+    if score >= 4:
+        return "Buy"
+    elif score <= -2:
+        return "Sell"
+    else:
+        return "Hold"
+
+
+
+
+
+stock_data = {
+    "price_trend": input("Enter price trend (Up/Down/Stable): "),
+    "volume": input("Enter volume (High/Medium/Low): "),
+    "volatility": input("Enter volatility (High/Low): "),
+    "sentiment": input("Enter sentiment (Positive/Neutral/Negative): ")
+}
+
+
+
+
+
+
+
+
+decision = trading_advice(stock_data)
+
+print("\nStock Market Trading Advice:")
+print("==============================")
+print(f"Recommended Action: {decision}")
+
+
+
+
+
+
+
+
+

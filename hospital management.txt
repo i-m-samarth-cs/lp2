@@ -1,0 +1,74 @@
+# Creating a simple knowledge base for hospital management
+knowledge_base = {
+    "fever": "Consult General Physician in OPD Room 101.",
+    "fracture": "Visit Orthopedic Department in Room 205.",
+    "eye pain": "Go to Ophthalmology in Room 310.",
+    "heart pain": "Emergency! Visit Cardiology Department immediately.",
+    "child birth": "Proceed to Maternity Ward on 2nd Floor."
+}
+
+
+
+# Function to provide department suggestion based on symptom
+def suggest_department(symptom):
+    if symptom.lower() in knowledge_base:
+        print(f"Suggestion: {knowledge_base[symptom.lower()]}")
+    else:
+        print("No specific department found. Please consult the reception.")
+
+
+
+
+
+# Function to add new information into the knowledge base
+def add_info(symptom, department_info):
+    knowledge_base[symptom.lower()] = department_info
+    print("Information added successfully to the system.")
+
+
+
+
+# Function to display all information in the knowledge base
+def view_all_info():
+    print("\nHospital Information System Contents:")
+    for symptom, department in knowledge_base.items():
+        print(f"{symptom.capitalize()} -> {department}")
+
+
+
+
+# Inference engine (menu-driven system)
+def hospital_expert_system():
+    while True:
+        print("\n--- Hospital and Medical Facilities Expert System ---")
+        print("1. Get Department Suggestion")
+        print("2. Add New Symptom Information")
+        print("3. View All Information")
+        print("4. Exit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            symptom = input("Enter patient's symptom: ")
+            suggest_department(symptom)
+
+        elif choice == '2':
+            symptom = input("Enter new symptom: ")
+            department_info = input("Enter corresponding department or action: ")
+            add_info(symptom, department_info)
+
+        elif choice == '3':
+            view_all_info()
+
+        elif choice == '4':
+            print("Exiting Expert System. Stay healthy!")
+            break
+
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+
+
+
+
+#### Start the expert system
+hospital_expert_system()

@@ -1,0 +1,86 @@
+from typing import Dict
+
+
+
+
+
+
+
+
+
+def airline_schedule_advice(flight_data: Dict[str, str]) -> str:
+    """
+    Provides scheduling advice for airline flight and cargo using basic rules.
+    Input: Dictionary with flight and cargo details.
+    Output: Schedule status.
+    """
+    score = 0
+
+    # Rule 1: Crew Availability
+    if flight_data['crew'].lower() == 'available':
+        score += 2
+    else:
+        score -= 1
+
+    # Rule 2: Weather Conditions
+    if flight_data['weather'].lower() == 'clear':
+        score += 2
+    elif flight_data['weather'].lower() == 'cloudy':
+        score += 1
+    else:
+        score -= 2
+
+    # Rule 3: Aircraft Status
+    if flight_data['aircraft_status'].lower() == 'ready':
+        score += 2
+    else:
+        score -= 2
+
+    # Rule 4: Cargo Load
+    try:
+        cargo_weight = float(flight_data['cargo_weight'])
+        if cargo_weight <= 10000:
+            score += 2
+        elif cargo_weight <= 15000:
+            score += 1
+        else:
+            score -= 2
+    except ValueError:
+        return "Invalid cargo weight entered."
+
+    # Final Decision
+    if score >= 6:
+        return "Flight and cargo schedule: Approved"
+    elif score >= 3:
+        return "Flight and cargo schedule: Needs Review"
+    else:
+        return "Flight and cargo schedule: Rejected"
+
+
+
+
+
+
+
+
+flight_data = {
+    "crew": input("Is crew available? (Available/Not Available): "),
+    "weather": input("Enter weather condition (Clear/Cloudy/Stormy): "),
+    "aircraft_status": input("Is aircraft ready? (Ready/Not Ready): "),
+    "cargo_weight": input("Enter cargo weight in kg (e.g., 9500): ")
+}
+
+
+
+
+
+
+
+
+
+
+decision = airline_schedule_advice(flight_data)
+
+print("\nAirline Scheduling and Cargo Advice:")
+print("====================================")
+print(f"Decision: {decision}")
