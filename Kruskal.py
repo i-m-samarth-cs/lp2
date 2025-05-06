@@ -9,7 +9,7 @@ def find(x, parent):
         parent[x] = find(parent[x], parent)
     return parent[x]
 
-def union(a, b, parent, rank)
+def union(a, b, parent, rank):
     parA = find(a, parent)
     parB = find(b, parent)
     if parA == parB:

@@ -20,7 +20,7 @@ def prim(n, adj):
             if not visited[v]:
                 heapq.heappush(min_heap, (w, v))
 
-    print("\n✅ Minimum Spanning Tree edges:")
+    print("\n Minimum Spanning Tree edges:")
     for u, w in mst:
         print(f"{u + 1} (weight = {w})")  # Output मध्ये 1-based index
     print(f"Total Minimum Cost = {total_cost}")
