@@ -1,0 +1,184 @@
+✅ Viva Questions with Answers
+🔸 Basics
+1. What is Amazon EC2?
+Amazon EC2 (Elastic Compute Cloud) is a web service that provides resizable virtual servers in the cloud. It allows users to run applications without needing to own physical hardware.
+
+2. What do you mean by “Elastic” in Amazon EC2?
+“Elastic” means you can easily increase or decrease the number of servers (instances) as per your needs. You can scale your application up or down based on demand.
+
+3. What are the benefits of using EC2 over physical servers?
+
+No need to buy hardware
+
+Pay-as-you-go pricing
+
+Easily scalable
+
+Available worldwide
+
+High availability and reliability
+
+🔸 Features
+4. What is an Elastic IP?
+An Elastic IP is a static public IP address that you can assign to an EC2 instance. It remains the same even if the instance is stopped or replaced.
+
+5. What is Auto Scaling and why is it useful?
+Auto Scaling automatically adds or removes EC2 instances based on demand.
+It ensures:
+
+High availability during high traffic
+
+Cost savings during low traffic
+
+6. What is the role of an Elastic Load Balancer (ELB)?
+ELB distributes incoming traffic across multiple EC2 instances to ensure no single server is overloaded, improving application performance and availability.
+
+🔸 Storage & Backup
+7. What is Amazon EBS?
+Amazon Elastic Block Store (EBS) is a storage service that provides persistent block-level storage volumes for use with EC2 instances.
+
+8. How is a snapshot in EBS useful?
+A snapshot is a backup of your EBS volume stored in Amazon S3. You can restore your data from a snapshot at any time in case of failure.
+
+9. What is Amazon S3 and how does it relate to EC2?
+Amazon Simple Storage Service (S3) is an object storage service used to store and retrieve files. It works with EC2 for:
+
+Backups (like EBS snapshots)
+
+Hosting static website content
+
+Data storage for apps running on EC2
+
+🔸 Monitoring & Security
+10. What is Amazon CloudWatch used for?
+CloudWatch is a monitoring tool that tracks metrics such as:
+
+CPU usage
+
+Network traffic
+
+Disk I/O
+It helps you understand your EC2 instance’s performance.
+
+11. What is IAM in AWS?
+IAM (Identity and Access Management) allows you to:
+
+Create users, groups, and roles
+
+Assign permissions
+
+Control who can access what in your AWS account
+
+12. How do you manage permissions in AWS?
+Permissions are managed using IAM policies. These are JSON-based rules that define what actions users or roles can perform on specific AWS resources.
+
+🔸 Miscellaneous
+13. What is Route 53?
+Amazon Route 53 is a Domain Name System (DNS) service used to manage domains and route traffic to AWS resources like EC2 or S3.
+
+14. Explain pay-as-you-go pricing in AWS.
+You only pay for what you use.
+For example:
+
+EC2: pay per hour of usage
+
+S3: pay per GB stored
+No upfront costs or long-term contracts required.
+
+15. Can you use your own operating system and software on EC2?
+Yes, EC2 supports multiple OS options like Linux, Windows, etc. You can also install any software or programming language you prefer.
+
+✅ Basic Level Viva Questions:
+Question	Answer
+What is Platform as a Service (PaaS)?	A cloud computing model that provides hardware and software tools over the internet for application development.
+What is the default port for running local GAE apps?	Port 8080.
+What does gcloud app deploy do?	It uploads and deploys your app to Google App Engine.
+What file is required for configuring a GAE Python app?	app.yaml.
+What command is used to initialize the Google Cloud SDK?	gcloud init.
+Can we run GAE apps locally before deploying?	Yes, using a local development server.
+What type of scaling does GAE support?	Manual, Basic, and Automatic scaling.
+What is the command to check Python version?	python --version.
+What is the use of Google Cloud SDK?	It is a set of tools to manage GCP resources and deploy apps.
+Does GAE support Windows OS for development?	Yes, for development and deployment (but not for production hosting).
+
+✅ Intermediate Level Viva Questions:
+Question	Answer
+What are the components of Google Cloud SDK?	gcloud, gsutil, and bq command-line tools.
+What are the different types of environments in GAE?	Standard Environment and Flexible Environment.
+Which Python versions are supported by GAE Standard Environment?	Python 2.7, 3.7, 3.8, 3.9 depending on configuration.
+What is the difference between App Engine Standard and Flexible?	Standard uses sandboxed environments; Flexible supports custom runtimes and VM instances.
+How do you enable billing in Google Cloud for GAE?	Through Google Cloud Console → Billing → Link Billing Account to Project.
+What is a service in GAE?	A service is a module in GAE that runs independently and can scale separately.
+Can GAE apps connect to external APIs?	Yes, but you may need to configure the app permissions.
+What is Cloud Datastore?	It is a NoSQL database used by GAE for storing structured data.
+
+✅ Advanced Level Viva Questions:
+Question	Answer
+What happens if app.yaml is missing?	The app cannot be deployed; GAE needs it for configuration.
+How does automatic scaling work in GAE?	GAE automatically adds or removes instances based on the incoming request load.
+What security features are built into GAE?	Automatic HTTPS, IAM roles, Firewall rules, and sandboxed environments.
+What is the difference between Cloud Functions and App Engine?	Cloud Functions is event-driven serverless compute; GAE is for hosting full web apps.
+How do you manage multiple versions of your app in GAE?	GAE allows versioning; you can deploy with different versions and switch traffic between them.
+What are IAM roles in GAE?	Identity and Access Management roles define who can access GCP resources.
+Can GAE apps be containerized?	Yes, in the Flexible Environment you can use Docker containers.
+How to view logs of your GAE app?	Through Google Cloud Console → Logging (Stackdriver Logs).
+What is the maximum request timeout in GAE Standard Environment?	1 minute for HTTP requests.
+How is pricing handled in GAE?	It uses a pay-as-you-go model with free quotas and charges based on resource usage.
+
+📌 FAQ: Apex Programming in Salesforce.com
+1. What is Apex in Salesforce?
+Apex is a strongly typed, object-oriented programming language developed by Salesforce to add custom business logic to the Salesforce platform.
+
+2. How is Apex different from Java?
+Apex has Java-like syntax but is designed to run on Salesforce’s multitenant cloud environment. It includes database operations like DML and SOQL as native language features.
+
+3. Where can Apex code be written in Salesforce?
+Apex code can be written using:
+
+Developer Console
+
+Salesforce UI Code Editor
+
+Force.com IDE (Eclipse-based)
+
+Visual Studio Code with Salesforce Extensions
+
+4. What is a trigger in Apex?
+A trigger is Apex code that executes before or after specific database events like insert, update, delete on a Salesforce object.
+
+5. What are SOQL and SOSL in Apex?
+SOQL (Salesforce Object Query Language) is used to retrieve records from a single object or related objects.
+
+SOSL (Salesforce Object Search Language) is used to search text, email, and phone fields across multiple objects.
+
+6. What are some limitations of Apex?
+Cannot modify standard Salesforce functionality.
+
+No support for multithreading.
+
+UI creation is not possible with Apex directly.
+
+Strict governor limits to ensure fair resource usage.
+
+7. What are Governor Limits?
+Governor Limits restrict the amount of resources (like CPU time, memory, queries) any single Apex transaction can use to ensure system stability in the multitenant environment.
+
+8. When should I use Apex instead of standard Salesforce tools?
+Use Apex when complex business logic, multi-object validation, or real-time automation is needed that cannot be achieved with flows, workflows, or process builders.
+
+9. Can Apex interact with external systems?
+Yes, Apex can make callouts to external web services via HTTP requests or by using SOAP/REST APIs.
+
+10. What are DML operations in Apex?
+DML (Data Manipulation Language) operations in Apex include:
+
+insert
+
+update
+
+delete
+
+upsert
+
+undelete
+
